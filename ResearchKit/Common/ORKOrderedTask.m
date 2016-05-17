@@ -625,6 +625,30 @@ void ORKStepArrayAddStep(NSMutableArray *array, ORKStep *step) {
         }
         
         {
+            
+            NSArray* textChoices = [NSArray arrayWithObjects:
+                                    [ORKTextChoice choiceWithText:@"Nothing at all" detailText: @"d" value:@"0" exclusive:NO],
+                                    [ORKTextChoice choiceWithText:@"Very, very slight" detailText: @"d" value:@"0.5" exclusive:NO],
+                                    [ORKTextChoice choiceWithText:@"Very slight" detailText: @"d" value:@"1" exclusive:NO],
+                                    [ORKTextChoice choiceWithText:@"Slight (light)" detailText: @"d" value:@"2" exclusive:NO],
+                                    [ORKTextChoice choiceWithText:@"Moderate" detailText: @"d" value:@"3" exclusive:NO],
+                                    [ORKTextChoice choiceWithText:@"Somewhat severe" detailText: @"d" value:@"4" exclusive:NO],
+                                    [ORKTextChoice choiceWithText:@"Severe (heavy)" detailText: @"d" value:@"5" exclusive:NO],
+                                    [ORKTextChoice choiceWithText:@"Very severe" detailText: @"d" value:@"6" exclusive:NO],
+                                    //[ORKTextChoice choiceWithText:@"t" detailText: @"d" value:@"7" exclusive:NO],
+                                    //[ORKTextChoice choiceWithText:@"t" detailText: @"d" value:@"8" exclusive:NO],
+                                    //[ORKTextChoice choiceWithText:@"t" detailText: @"d" value:@"9" exclusive:NO],
+                                    //[ORKTextChoice choiceWithText:@"t" detailText: @"d" value:@"10" exclusive:NO],
+                                    nil];
+            
+            ORKAnswerFormat* choiceAnsFormat = [ORKAnswerFormat textScaleAnswerFormatWithTextChoices:textChoices defaultIndex:NSIntegerMax vertical:YES];
+            
+            ORKQuestionStep* choiceStep = [ORKQuestionStep questionStepWithIdentifier:@"choiceans" title:@"Shortness of breath" text:@"Please grade your level of shortness of breath using this scale" answer:choiceAnsFormat];
+            
+            ORKStepArrayAddStep(steps, choiceStep);
+        }
+        
+        {
             ORKInstructionStep *step = [[ORKInstructionStep alloc] initWithIdentifier:ORKInstruction1StepIdentifier];
             step.title = title;
             step.text = getStarted;
